@@ -1,6 +1,2 @@
 ---
-
-- name: Restart sysctl_config
-  service:
-    name: sysctl
-    state: restarted
+# a placeholder

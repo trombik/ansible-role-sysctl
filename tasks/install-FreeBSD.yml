@@ -1,6 +1,0 @@
----
-
-- name: Install sysctl
-  pkgng:
-    name: sysctl
-    state: present

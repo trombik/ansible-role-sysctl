@@ -1,58 +1,26 @@
 require 'spec_helper'
 require 'serverspec'
 
-package = 'sysctl'
-service = 'sysctl'
-config  = '/etc/sysctl/sysctl.conf'
-user    = 'sysctl'
-group   = 'sysctl'
-ports   = [ PORTS ]
-log_dir = '/var/log/sysctl'
-db_dir  = '/var/lib/sysctl'
+sysctl_bin = '/sbin/sysctl'
+sysctl_conf = '/etc/sysctl.conf'
+sysctl = {}
 
 case os[:family]
 when 'freebsd'
-  config = '/usr/local/etc/sysctl.conf'
-  db_dir = '/var/db/sysctl'
+  sysctl = {
+    'net.inet.ip.forwarding' => 1,
+    'kern.maxfiles' => 20000
+  }
 end
 
-describe package(package) do
-  it { should be_installed }
-end 
-
-describe file(config) do
-  it { should be_file }
-  its(:content) { should match Regexp.escape('sysctl') }
-end
-
-describe file(log_dir) do
-  it { should exist }
-  it { should be_mode 755 }
-  it { should be_owned_by user }
-  it { should be_grouped_into group }
-end
-
-describe file(db_dir) do
-  it { should exist }
-  it { should be_mode 755 }
-  it { should be_owned_by user }
-  it { should be_grouped_into group }
-end
-
-case os[:family]
-when 'freebsd'
-  describe file('/etc/rc.conf.d/sysctl') do
-    it { should be_file }
+sysctl.each do |k, v|
+  describe command("#{ sysctl_bin } -n #{ k }") do
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /^#{ v }$/ }
+    its(:stderr) { should match /^$/ }
   end
-end
 
-describe service(service) do
-  it { should be_running }
-  it { should be_enabled }
-end
-
-ports.each do |p|
-  describe port(p) do
-    it { should be_listening }
+  describe file(sysctl_conf) do
+    its(:content) { should match Regexp.escape("#{ k }=#{ v }") }
   end
 end

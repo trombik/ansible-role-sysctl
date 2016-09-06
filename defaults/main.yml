@@ -1,3 +1,4 @@
 sysctl_conf: "{{ __sysctl_conf }}"
+sysctl_bin: "{{ __sysctl_bin }}"
 
 sysctl: {}

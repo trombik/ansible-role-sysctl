@@ -3,34 +3,10 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- include: "install-{{ ansible_os_family }}.yml"
-
-- name: Create log directory
-  file:
-    path: "{{ sysctl_log_dir }}"
-    mode: 0755
-    owner: "{{ sysctl_user }}"
-    group: "{{ sysctl_group }}"
-    state: directory
-  notify: Restart sysctl
-
-- name: Create db directory
-  file:
-    path: "{{ sysctl_db_dir }}"
-    mode: 0755
-    owner: "{{ sysctl_user }}"
-    group: "{{ sysctl_group }}"
-    state: directory
-  notify: Restart sysctl
+- command: "{{ sysctl_bin }} {{ item.key }}={{ item.value }}"
+  with_dict: "{{ sysctl }}"
 
 - name: Create sysctl.conf
   template:
     src: sysctl.conf.j2
     dest: "{{ sysctl_conf }}"
-  notify: Restart sysctl
-
-- name: Start sysctl
-  service:
-    name: "{{ sysctl_service }}"
-    enabled: true
-    state: started
