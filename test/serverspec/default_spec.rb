@@ -6,7 +6,7 @@ sysctl_conf = '/etc/sysctl.conf'
 sysctl = {}
 
 case os[:family]
-when 'freebsd'
+when 'freebsd', 'openbsd'
   sysctl = {
     'net.inet.ip.forwarding' => 1,
     'kern.maxfiles' => 20000
