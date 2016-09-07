@@ -34,7 +34,7 @@ platforms:
   # when you add another platform, make sure sysctl keys in
   # test/serverspec/default.yml exist in the platform.
   # as ansible does not allow template strings in YAML key, it is not possible
-  # to support different platform with the same test config.
+  # to support different platform with different sysctl keys.
   - name: openbsd-6.0-amd64
     driver:
       box: trombik/ansible-openbsd-6.0-amd64
