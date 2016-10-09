@@ -6,7 +6,7 @@ transport:
   name: rsync
 
 provisioner:
-  hosts: test-kitchen
+  hosts: tests-kitchen
   name: ansible_playbook
   require_chef_for_busser: false
   require_ruby_for_busser: false
@@ -54,10 +54,10 @@ suites:
   - name: default
     provisioner:
       name: ansible_playbook
-      playbook: test/serverspec/default.yml
+      playbook: tests/serverspec/default.yml
     verifier:
       name: shell
-      command: rspec -c -f d -I test/serverspec test/serverspec/default_spec.rb
+      command: rspec -c -f d -I tests/serverspec tests/serverspec/default_spec.rb
     excludes:
       - ubuntu-14.04-amd64
       - centos-7.2-x86_64
@@ -65,10 +65,10 @@ suites:
   - name: linux
     provisioner:
       name: ansible_playbook
-      playbook: test/serverspec/linux.yml
+      playbook: tests/serverspec/linux.yml
     verifier:
       name: shell
-      command: rspec -c -f d -I test/serverspec test/serverspec/default_spec.rb
+      command: rspec -c -f d -I tests/serverspec tests/serverspec/default_spec.rb
     excludes:
       - freebsd-10.3-amd64
       - openbsd-6.0-amd64
