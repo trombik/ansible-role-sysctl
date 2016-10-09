@@ -11,7 +11,20 @@ when 'freebsd', 'openbsd'
     'net.inet.ip.forwarding' => 1,
     'kern.maxfiles' => 20000
   }
+when 'redhat'
+  sysctl_conf = '/etc/sysctl.d/99-sysctl.conf'
+  sysctl = {
+    'net.ipv4.tcp_tw_reuse' => 1,
+    'net.ipv4.tcp_syncookies' => 0,
+  }
+when 'ubuntu'
+  sysctl_conf = '/etc/sysctl.conf'
+  sysctl = {
+    'net.ipv4.tcp_tw_reuse' => 1,
+    'net.ipv4.tcp_syncookies' => 0,
+  }
 end
+puts os[:family]
 
 sysctl.each do |k, v|
   describe command("#{ sysctl_bin } -n #{ k }") do
@@ -21,6 +34,7 @@ sysctl.each do |k, v|
   end
 
   describe file(sysctl_conf) do
+    it { should be_file }
     its(:content) { should match Regexp.escape("#{ k }=#{ v }") }
   end
 end

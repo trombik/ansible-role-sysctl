@@ -1,0 +1,2 @@
+__sysctl_conf: /etc/sysctl.conf
+__sysctl_bin: /sbin/sysctl
