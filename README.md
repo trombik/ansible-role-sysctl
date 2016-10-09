@@ -1,7 +1,7 @@
 ansible-role-sysctl
 =====================
 
-A brief description of the role goes here.
+Set sysctl.
 
 Requirements
 ------------
@@ -11,9 +11,41 @@ None
 Role Variables
 --------------
 
-| variable | description | default |
+| Variable | Description | Default |
 |----------|-------------|---------|
+| sysctl\_conf | path to `sysctl.conf(5)` | {{ \_\_sysctl\_conf }} |
+| sysctl\_bin | path to `sysctl(8)` | {{ \_\_sysctl\_bin }} |
+| sysctl | dict contains sysctl key as key, sysctl value as value | {} |
 
+## Debian
+
+| Variable | Default |
+|----------|---------|
+| \_\_sysctl\_conf | /etc/sysctl.conf |
+| \_\_sysctl\_bin | /sbin/sysctl |
+
+## FreeBSD
+
+| Variable | Default |
+|----------|---------|
+| \_\_sysctl\_conf | /etc/sysctl.conf |
+| \_\_sysctl\_bin | /sbin/sysctl |
+
+## OpenBSD
+
+| Variable | Default |
+|----------|---------|
+| \_\_sysctl\_conf | /etc/sysctl.conf |
+| \_\_sysctl\_bin | /sbin/sysctl |
+
+## RedHat
+
+| Variable | Default |
+|----------|---------|
+| \_\_sysctl\_conf | /etc/sysctl.d/99-sysctl.conf |
+| \_\_sysctl\_bin | /sbin/sysctl |
+
+Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
 
 Dependencies
 ------------
@@ -23,6 +55,15 @@ None
 Example Playbook
 ----------------
 
+```yaml
+- hosts: localhost
+  roles:
+    - ansible-role-sysctl
+  vars:
+    sysctl:
+      net.inet.ip.forwarding: 1
+      kern.maxfiles: 20000
+```
 
 License
 -------
