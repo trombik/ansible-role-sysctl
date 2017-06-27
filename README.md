@@ -10,39 +10,37 @@ None
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| sysctl\_conf | path to `sysctl.conf(5)` | {{ \_\_sysctl\_conf }} |
-| sysctl\_bin | path to `sysctl(8)` | {{ \_\_sysctl\_bin }} |
-| sysctl | dict contains sysctl key as key, sysctl value as value | {} |
+| `sysctl_conf` | path to `sysctl.conf(5)` | `{{ __sysctl_conf }}` |
+| `sysctl_bin` | path to `sysctl(8)` | `{{ __sysctl_bin }}` |
+| `sysctl` | dict contains sysctl key as key, sysctl value as value | `{}` |
 
 ## Debian
 
 | Variable | Default |
 |----------|---------|
-| \_\_sysctl\_conf | /etc/sysctl.conf |
-| \_\_sysctl\_bin | /sbin/sysctl |
+| `__sysctl_conf` | `/etc/sysctl.conf` |
+| `__sysctl_bin` | `/sbin/sysctl` |
 
 ## FreeBSD
 
 | Variable | Default |
 |----------|---------|
-| \_\_sysctl\_conf | /etc/sysctl.conf |
-| \_\_sysctl\_bin | /sbin/sysctl |
+| `__sysctl_conf` | `/etc/sysctl.conf` |
+| `__sysctl_bin` | `/sbin/sysctl` |
 
 ## OpenBSD
 
 | Variable | Default |
 |----------|---------|
-| \_\_sysctl\_conf | /etc/sysctl.conf |
-| \_\_sysctl\_bin | /sbin/sysctl |
+| `__sysctl_conf` | `/etc/sysctl.conf` |
+| `__sysctl_bin` | `/sbin/sysctl` |
 
 ## RedHat
 
 | Variable | Default |
 |----------|---------|
-| \_\_sysctl\_conf | /etc/sysctl.d/99-sysctl.conf |
-| \_\_sysctl\_bin | /sbin/sysctl |
-
-Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
+| `__sysctl_conf` | `/etc/sysctl.d/99-sysctl.conf` |
+| `__sysctl_bin` | `/sbin/sysctl` |
 
 # Dependencies
 
@@ -62,6 +60,7 @@ None
 
 # License
 
+```
 Copyright (c) 2016 Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
 
 Permission to use, copy, modify, and distribute this software for any
@@ -75,6 +74,7 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
 
 # Author Information
 
