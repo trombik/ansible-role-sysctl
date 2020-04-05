@@ -1,3 +1,8 @@
+## Release 1.0.2
+
+* f2a0010 bugfix: update platforms
+* 6dd255a bugfix: QA
+
 ## Release 1.0.1
 
 * 5e92aee [bugfix] Update Gemfile (#1)
