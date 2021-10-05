@@ -24,7 +24,6 @@ when "ubuntu", "devuan"
     "net.ipv4.tcp_syncookies" => "0"
   }
 end
-puts os[:family]
 
 sysctl.each do |k, v|
   describe command("#{sysctl_bin} -n '#{k}'") do
