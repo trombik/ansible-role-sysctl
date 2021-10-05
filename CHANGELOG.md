@@ -1,3 +1,10 @@
+## Release 1.0.3
+
+* dcc8631 bugfix: QA
+* 59fbe20 bugfix: QA
+* 597fb99 bugfix: support Devuan
+* 0b79a78 bugfix: QA
+
 ## Release 1.0.2
 
 * f2a0010 bugfix: update platforms
