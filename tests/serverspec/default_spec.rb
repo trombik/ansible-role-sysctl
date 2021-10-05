@@ -17,7 +17,7 @@ when "redhat"
     "net.ipv4.tcp_tw_reuse" => "1",
     "net.ipv4.tcp_syncookies" => "0"
   }
-when "ubuntu"
+when "ubuntu", "devuan"
   sysctl_conf = "/etc/sysctl.conf"
   sysctl = {
     "net.ipv4.tcp_tw_reuse" => "1",
